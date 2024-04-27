@@ -1,1 +1,1 @@
-# Flutter_EasyCook
+# MiniProject_EasyCook
