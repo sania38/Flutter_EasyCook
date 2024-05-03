@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "362367098610",
+    "project_id": "easycook-c327e",
+    "storage_bucket": "easycook-c327e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:362367098610:android:4a8286113b040a1adf7a6b",
+        "android_client_info": {
+          "package_name": "com.example.easycook"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZMDbOaCy5FKa5Mq2iN8nmcWsHHyiPUEM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
