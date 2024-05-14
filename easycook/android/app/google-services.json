@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "362367098610",
+    "firebase_url": "https://easycook-c327e-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "easycook-c327e",
     "storage_bucket": "easycook-c327e.appspot.com"
   },
@@ -12,7 +13,20 @@
           "package_name": "com.example.easycook"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "362367098610-03oj6nd07to1phd924lqs89egsq34b42.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.easycook",
+            "certificate_hash": "6becb9960eb6152295b9d66cbcc7c814269ee686"
+          }
+        },
+        {
+          "client_id": "362367098610-9tdo1q5r2ac7fn98278iaddeauk7392e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAZMDbOaCy5FKa5Mq2iN8nmcWsHHyiPUEM"
@@ -20,7 +34,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "362367098610-9tdo1q5r2ac7fn98278iaddeauk7392e.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "362367098610-piu0fjb5f4cpvd53hjqcmjbl58qu8ikn.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.easycook"
+              }
+            }
+          ]
         }
       }
     }

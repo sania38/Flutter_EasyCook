@@ -1,18 +1,27 @@
-import 'package:easycook/bloc/login/login_cubit.dart';
-import 'package:easycook/bloc/register/register_cubit.dart';
+import 'package:easycook/state%20management/bloc/login/login_cubit.dart';
+import 'package:easycook/state%20management/provider/profile_pict.dart';
+import 'package:easycook/state%20management/bloc/register/register_cubit.dart';
+import 'package:easycook/state%20management/provider/simpan_resep.dart';
+import 'package:easycook/state%20management/provider/update_recipe.dart';
+import 'package:easycook/state%20management/provider/upload_profile.dart';
 import 'package:easycook/firebase_options.dart';
-import 'package:easycook/screens/login.dart';
-import 'package:easycook/screens/register.dart';
+import 'package:easycook/screens/login_screen.dart';
+import 'package:easycook/screens/main_screen.dart';
+import 'package:easycook/screens/profile_screen.dart';
+import 'package:easycook/screens/register_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:provider/provider.dart';
+
+import 'state management/bloc/bottom_nav/bottom_nav_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   runApp(const MyApp());
 }
 
@@ -24,24 +33,41 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        ChangeNotifierProvider(create: (_) => ProfilePictureUrlProvider()),
+        ChangeNotifierProvider(create: (_) => ProfileProvider()),
+        ChangeNotifierProvider(create: (_) => SaveRecipeProvider()),
+        ChangeNotifierProvider(create: (_) => UpdateRecipeProvider()),
         BlocProvider(
           create: (context) => LoginCubit(),
         ),
         BlocProvider(
           create: (context) => RegisterCubit(),
         ),
+        BlocProvider(
+          create: (context) => BottomNavBloc(),
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
+          tabBarTheme: const TabBarTheme(
+            labelColor: Colors.black, // Warna teks tab yang dipilih
+            unselectedLabelColor:
+                Colors.grey, // Warna teks tab yang tidak dipilih
+            indicatorColor: Color(0xFF58A975), // Warna tab yang aktif
+          ),
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            backgroundColor:
+                Color(0xFFFFFF99), // Warna background bottom navigation bar
+          ),
         ),
         home: const LoginPage(),
         routes: {
           '/login': (context) => const LoginPage(),
           '/register': (context) => const RegisterPage(),
+          '/main': (context) => const MainScreen(),
+          '/profile': (context) => const ProfileScreen(),
         },
       ),
     );

@@ -41,6 +41,19 @@ dependencies:
   firebase_auth: ^4.19.4
   shared_preferences: ^2.2.3
   email_validator: ^2.1.17
+  equatable: ^2.0.5
+  cloud_firestore: ^4.17.2
+  dotted_border: ^2.1.0
+  image_picker: ^1.1.1
+  uuid: ^4.4.0
+  firebase_storage: ^11.7.5
+  carousel_slider: ^4.2.1
+  google_sign_in: ^6.2.1
+  http: ^1.2.1
+  intl: ^0.19.0
+  envied: ^0.5.4+1
+  provider: ^6.1.2
+
 
 dev_dependencies:
   flutter_test:
@@ -52,6 +65,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^3.0.0
+  envied_generator: ^0.5.4+1
+  build_runner: ^2.4.9
 
 
 # For information on the generic Dart part of this file, see the

@@ -46,6 +46,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '362367098610',
     projectId: 'easycook-c327e',
     authDomain: 'easycook-c327e.firebaseapp.com',
+    databaseURL: 'https://easycook-c327e-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'easycook-c327e.appspot.com',
     measurementId: 'G-E9VWR0W54T',
   );
@@ -55,6 +56,7 @@ class DefaultFirebaseOptions {
     appId: '1:362367098610:android:4a8286113b040a1adf7a6b',
     messagingSenderId: '362367098610',
     projectId: 'easycook-c327e',
+    databaseURL: 'https://easycook-c327e-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'easycook-c327e.appspot.com',
   );
 
@@ -63,7 +65,9 @@ class DefaultFirebaseOptions {
     appId: '1:362367098610:ios:2ebc014652adefc3df7a6b',
     messagingSenderId: '362367098610',
     projectId: 'easycook-c327e',
+    databaseURL: 'https://easycook-c327e-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'easycook-c327e.appspot.com',
+    iosClientId: '362367098610-piu0fjb5f4cpvd53hjqcmjbl58qu8ikn.apps.googleusercontent.com',
     iosBundleId: 'com.example.easycook',
   );
 
@@ -72,7 +76,9 @@ class DefaultFirebaseOptions {
     appId: '1:362367098610:ios:2ebc014652adefc3df7a6b',
     messagingSenderId: '362367098610',
     projectId: 'easycook-c327e',
+    databaseURL: 'https://easycook-c327e-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'easycook-c327e.appspot.com',
+    iosClientId: '362367098610-piu0fjb5f4cpvd53hjqcmjbl58qu8ikn.apps.googleusercontent.com',
     iosBundleId: 'com.example.easycook',
   );
 
@@ -82,7 +88,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '362367098610',
     projectId: 'easycook-c327e',
     authDomain: 'easycook-c327e.firebaseapp.com',
+    databaseURL: 'https://easycook-c327e-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'easycook-c327e.appspot.com',
     measurementId: 'G-84D2SEMS30',
   );
+
 }
