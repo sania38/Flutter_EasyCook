@@ -15,15 +15,13 @@ class TampilScreen extends StatefulWidget {
 
 class _TampilScreenState extends State<TampilScreen> {
   // ignore: unused_field
-  final AuthServices _auth =
-      AuthServices(); // Create an instance of your authentication service
-  final UserRepository _userRepository = UserRepository(
-      FirebaseFirestore.instance); // Create an instance of UserRepository
+  final AuthServices _auth = AuthServices();
+  final UserRepository _userRepository =
+      UserRepository(FirebaseFirestore.instance);
 
   late Future<List<Recipe>> _resepFuture;
-  final TextEditingController _searchController =
-      TextEditingController(); // Text controller for search input
-  String _searchKeyword = ''; // Keyword for search
+  final TextEditingController _searchController = TextEditingController();
+  String _searchKeyword = '';
 
   @override
   void initState() {
@@ -105,7 +103,7 @@ class _TampilScreenState extends State<TampilScreen> {
                         builder: (context, userSnapshot) {
                           if (userSnapshot.connectionState ==
                               ConnectionState.waiting) {
-                            return CircularProgressIndicator(); // Tampilkan loading indicator
+                            return CircularProgressIndicator();
                           } else if (userSnapshot.hasError) {
                             return Text('Error: ${userSnapshot.error}');
                           } else {

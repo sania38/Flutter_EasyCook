@@ -55,14 +55,6 @@ class _RegisterPageState extends State<RegisterPage> {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
-                // TextFormField(
-                //   controller: _nameController,
-                //   decoration: const InputDecoration(
-                //       labelText: 'Masukan nama', border: OutlineInputBorder()),
-                // ),
-                // const SizedBox(
-                //   height: 24,
-                // ),
                 Image.asset(
                   "assets/loreg.png",
                   width: 170.0,
@@ -106,7 +98,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     _emailError!,
                     style: const TextStyle(color: Colors.red),
                   ),
-
                 const SizedBox(
                   height: 24,
                 ),
@@ -149,7 +140,6 @@ class _RegisterPageState extends State<RegisterPage> {
                     style: TextStyle(color: Colors.black),
                   ),
                 ),
-
                 Row(
                   mainAxisAlignment:
                       MainAxisAlignment.center, //Menengahkan elemen horizontal

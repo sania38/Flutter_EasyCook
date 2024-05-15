@@ -9,7 +9,6 @@ class ProfilePictureUrlProvider extends ChangeNotifier {
   Future<void> fetchProfilePictureUrl(String userId) async {
     try {
       // Retrieve the profile picture URL from Firestore
-      // (Assuming you have initialized FirebaseFirestore)
       DocumentSnapshot userProfileSnapshot = await FirebaseFirestore.instance
           .collection('users')
           .doc(userId)

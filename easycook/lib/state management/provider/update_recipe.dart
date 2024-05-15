@@ -1,11 +1,12 @@
 import 'dart:io';
 
+import 'package:easycook/screens/main_screen.dart';
 import 'package:easycook/services/firebase_service.dart';
 import 'package:flutter/material.dart';
 
 class UpdateRecipeProvider extends ChangeNotifier {
   FirebaseService _firebaseService = FirebaseService();
-  File? image; // Sesuaikan dengan nama layanan Firebase Anda
+  File? image;
 
   Future<void> updateResep({
     required String userId,
@@ -18,7 +19,6 @@ class UpdateRecipeProvider extends ChangeNotifier {
     required BuildContext context,
   }) async {
     try {
-      // Check if a new image is selected
       if (image != null) {
         // Upload the new image to Firebase Storage
         final imageUrl = await _firebaseService.uploadFoto(image!);
@@ -32,8 +32,7 @@ class UpdateRecipeProvider extends ChangeNotifier {
           caraMemasak: howTo,
           foto: image,
           userId: userId,
-          imageURL:
-              imageUrl, // Pass the new image URL to the updateResep method
+          imageURL: imageUrl,
         );
       } else {
         // If no new image is selected, update the recipe data without changing the image
@@ -49,7 +48,13 @@ class UpdateRecipeProvider extends ChangeNotifier {
       }
 
       _showSnackBar(context, 'Resep berhasil diperbarui!');
-      Navigator.pop(context);
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) =>
+              MainScreen(), // Ganti ResepPage dengan halaman yang ingin Anda navigasikan
+        ),
+      );
     } catch (e) {
       _showSnackBar(context, 'Error saat memperbarui resep: $e');
     }

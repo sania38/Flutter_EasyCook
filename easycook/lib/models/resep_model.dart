@@ -36,8 +36,7 @@ class Recipe {
       imageURL: data['foto_url'] ?? '',
       userId: data['user_id'] ?? '',
       createdAt: (data['created_at'] as Timestamp).toDate(),
-      profileName:
-          '', // Anda perlu memperoleh nama pengguna dari dokumen atau atribut lain
+      profileName: '',
       likeCount: data['likeCount'] ?? 0,
     );
   }

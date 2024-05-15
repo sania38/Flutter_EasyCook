@@ -17,7 +17,6 @@ class FirebaseService {
     required List<String> caraMemasak,
     File? foto,
     required String userId,
-    int likeCount = 0, // Tambahkan parameter likeCount dengan nilai default 0
   }) async {
     try {
       CollectionReference resep = _firestore.collection('resep');
@@ -29,7 +28,6 @@ class FirebaseService {
         'foto_url': foto != null ? await uploadFoto(foto) : null,
         'user_id': userId,
         'created_at': FieldValue.serverTimestamp(),
-        'likeCount': likeCount, // Simpan jumlah like ke Firebase
       });
     } catch (e) {
       print("Gagal menyimpan resep: $e");
@@ -39,10 +37,9 @@ class FirebaseService {
 
   Future<String> uploadFoto(File foto) async {
     try {
-      // Generate unique filename using UUID
       String fileName = Uuid().v4();
 
-      // Upload file to Firebase Storage
+      // Upload file ke Firebase Storage
       TaskSnapshot snapshot =
           await _storage.ref().child('images/$fileName').putFile(foto);
 
@@ -80,7 +77,6 @@ class FirebaseService {
           userId: doc['user_id'],
           createdAt: doc['created_at'].toDate(),
           profileName: '',
-          likeCount: doc['likeCount'] ?? 0, // Ambil jumlah like dari Firebase
         );
       }).toList();
 
@@ -142,8 +138,7 @@ class FirebaseService {
           imageURL: docSnapshot['foto_url'],
           userId: docSnapshot['user_id'],
           createdAt: docSnapshot['created_at'].toDate(),
-          profileName:
-              '', // Anda perlu memperoleh nama pengguna dari dokumen atau atribut lain
+          profileName: '',
         );
 
         // Ambil data pengguna yang mempublikasikan resep
@@ -152,13 +147,12 @@ class FirebaseService {
 
         // Periksa apakah dokumen pengguna ada
         if (userSnapshot.exists) {
-          // Dapatkan nama pengguna dari dokumen pengguna
+          //  nama pengguna dari dokumen pengguna
           resep.profileName = userSnapshot['username'];
         }
 
         return resep;
       } else {
-        // Jika dokumen tidak ditemukan, kembalikan null
         return null;
       }
     } catch (e) {
@@ -199,10 +193,9 @@ class FirebaseService {
     required List<String> caraMemasak,
     required File? foto,
     required String userId,
-    String? imageURL, // Add imageURL parameter
+    String? imageURL,
   }) async {
     try {
-      // Upload the image if it's not null
       String? uploadedImageUrl;
       if (foto != null) {
         final ref = _storage.ref().child('resep_images').child(recipeId);
@@ -212,7 +205,6 @@ class FirebaseService {
         });
       }
 
-      // Use the new imageURL if provided, otherwise use the uploadedImageUrl
       final imageUrl = imageURL ?? uploadedImageUrl;
 
       // Update the recipe data in Firestore

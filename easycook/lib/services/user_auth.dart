@@ -58,13 +58,11 @@ class UserRepository {
   Future<Map<String, dynamic>?> getUserData(String userId) async {
     DocumentSnapshot userData =
         await _firestore.collection('users').doc(userId).get();
-    return userData.data()
-        as Map<String, dynamic>?; // Cast data to the expected type
+    return userData.data() as Map<String, dynamic>?;
   }
 
   Future<String?> getUserName(String userId) async {
     Map<String, dynamic>? userData = await getUserData(userId);
-    return userData?[
-        'username']; // Assuming 'name' is the key for the user's name
+    return userData?['username'];
   }
 }

@@ -57,7 +57,6 @@ class _TambahScreenState extends State<TambahScreen> {
       }
     } catch (e) {
       print('Error fetching recipe: $e');
-      // Tambahkan kode untuk menangani kesalahan jika diperlukan
     }
   }
 
@@ -71,9 +70,7 @@ class _TambahScreenState extends State<TambahScreen> {
         });
       }
     } catch (e) {
-      // Tangani kesalahan jika terjadi
       print("Error picking image: $e");
-      // Tambahkan kode untuk memberi tahu pengguna bahwa ada kesalahan
     }
   }
 
@@ -96,7 +93,7 @@ class _TambahScreenState extends State<TambahScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            if (_isLoading) // Tampilkan indikator loading jika _isLoading true
+            if (_isLoading)
               const Center(
                 child: CircularProgressIndicator(),
               ),
@@ -104,7 +101,7 @@ class _TambahScreenState extends State<TambahScreen> {
               child: Padding(
                 padding: const EdgeInsets.all(24.0),
                 child: InkWell(
-                  onTap: _pilihGambar, // Panggil method untuk memilih gambar
+                  onTap: _pilihGambar,
                   child: Container(
                     decoration: BoxDecoration(
                       border:
@@ -216,6 +213,12 @@ class _TambahScreenState extends State<TambahScreen> {
                       labelText: "Masukan nama masakan",
                       labelStyle: TextStyle(color: Color(0xFF000000)),
                     ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'This field cannot be empty';
+                      }
+                      return null;
+                    },
                   ),
                   const SizedBox(
                     height: 30,
@@ -236,6 +239,7 @@ class _TambahScreenState extends State<TambahScreen> {
                     height: 12,
                   ),
                   TextFormField(
+                    key: const Key('desc'),
                     controller: descController,
                     decoration: const InputDecoration(
                         border: OutlineInputBorder(
@@ -247,6 +251,12 @@ class _TambahScreenState extends State<TambahScreen> {
                         labelText: "Deskripsikan sedikit tentang maskanmu",
                         labelStyle: TextStyle(color: Color(0xFF000000))),
                     maxLines: 4,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'This field cannot be empty';
+                      }
+                      return null;
+                    },
                   ),
                 ],
               ),
@@ -392,6 +402,12 @@ class _TambahScreenState extends State<TambahScreen> {
                               labelText: "Masukan bahan",
                               labelStyle: TextStyle(color: Color(0xFF000000)),
                             ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'This field cannot be empty';
+                              }
+                              return null;
+                            },
                           ),
                           const SizedBox(
                             height: 20,
@@ -582,6 +598,12 @@ class _TambahScreenState extends State<TambahScreen> {
                               labelText: "Masukan cara memasak",
                               labelStyle: TextStyle(color: Color(0xFF000000)),
                             ),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'This field cannot be empty';
+                              }
+                              return null;
+                            },
                           ),
                           const SizedBox(
                             height: 20,
@@ -636,9 +658,7 @@ class _TambahScreenState extends State<TambahScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 ElevatedButton(
-                  onPressed: () {
-                    // Tambahkan fungsi untuk menangani submit di sini
-                  },
+                  onPressed: () {},
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xffC0C0C0),
                     padding:
@@ -654,41 +674,53 @@ class _TambahScreenState extends State<TambahScreen> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    setState(() {
-                      _isLoading =
-                          true; // Set _isLoading to true before calling _simpanResep
-                    });
-                    if (widget.recipeId != null) {
-                      User? user = FirebaseAuth.instance.currentUser;
-                      if (user != null) {
-                        // Jika user sedang login, perbarui resep dengan userId yang ditemukan
-                        Provider.of<UpdateRecipeProvider>(context,
-                                listen: false)
-                            .updateResep(
-                          userId: user.uid,
-                          recipeId: widget.recipeId!,
+                    // Periksa apakah nilai controller tidak kosong
+                    if (foodcController.text.isNotEmpty &&
+                        descController.text.isNotEmpty &&
+                        ingredients.isNotEmpty &&
+                        howTo.isNotEmpty &&
+                        _image != null) {
+                      if (widget.recipeId != null) {
+                        User? user = FirebaseAuth.instance.currentUser;
+                        if (user != null) {
+                          // Jika user sedang login, perbarui resep dengan userId yang ditemukan
+                          Provider.of<UpdateRecipeProvider>(context,
+                                  listen: false)
+                              .updateResep(
+                            userId: user.uid,
+                            recipeId: widget.recipeId!,
+                            foodcController: foodcController,
+                            descController: descController,
+                            ingredients: ingredients,
+                            howTo: howTo,
+                            image: _image,
+                            context: context,
+                          );
+                        } else {
+                          print("User belum login.");
+                        }
+                      } else {
+                        Provider.of<SaveRecipeProvider>(context, listen: false)
+                            .simpanResep(
+                          context: context,
                           foodcController: foodcController,
                           descController: descController,
-                          ingredients: ingredients,
-                          howTo: howTo,
+                          ingredients: List<String>.from(
+                              ingredients), // Mengirimkan salinan list
+                          howTo: List<String>.from(
+                              howTo), // Mengirimkan salinan list
                           image: _image,
-                          context:
-                              context, // Kirim context untuk menampilkan SnackBar
+                          ingredientController: ingredientController,
+                          howToController: howToController,
                         );
-                      } else {
-                        // Jika tidak ada pengguna yang login, mungkin perlu menangani kasus ini
-                        print("User belum login.");
                       }
                     } else {
-                      Provider.of<SaveRecipeProvider>(context, listen: false)
-                          .simpanResep(
-                        foodcController: foodcController,
-                        descController: descController,
-                        ingredients: ingredients,
-                        howTo: howTo,
-                        image: _image,
-                        ingredientController: ingredientController,
-                        howToController: howToController,
+                      // Tampilkan pesan kesalahan jika ada input yang kosong
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Form tidak boleh kosong'),
+                          backgroundColor: Colors.red,
+                        ),
                       );
                     }
                   },

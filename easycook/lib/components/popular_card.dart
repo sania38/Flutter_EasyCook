@@ -4,12 +4,12 @@ import 'package:easycook/models/resep_model.dart';
 
 class PopularCard extends StatelessWidget {
   final Recipe recipe;
-  final String profilePictureUrl; // Tambahkan properti profilePictureUrl
+  final String profilePictureUrl;
 
   PopularCard({
     Key? key,
     required this.recipe,
-    required this.profilePictureUrl, // Inisialisasi properti profilePictureUrl
+    required this.profilePictureUrl,
   }) : super(key: key);
 
   Future<String?> fetchProfilePictureUrl(String userId) async {

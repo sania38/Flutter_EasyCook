@@ -1,3 +1,4 @@
+import 'package:easycook/screens/splash.dart';
 import 'package:easycook/state%20management/bloc/login/login_cubit.dart';
 import 'package:easycook/state%20management/provider/profile_pict.dart';
 import 'package:easycook/state%20management/bloc/register/register_cubit.dart';
@@ -52,17 +53,15 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           tabBarTheme: const TabBarTheme(
-            labelColor: Colors.black, // Warna teks tab yang dipilih
-            unselectedLabelColor:
-                Colors.grey, // Warna teks tab yang tidak dipilih
-            indicatorColor: Color(0xFF58A975), // Warna tab yang aktif
+            labelColor: Colors.black,
+            unselectedLabelColor: Colors.grey,
+            indicatorColor: Color(0xFF58A975),
           ),
           bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-            backgroundColor:
-                Color(0xFFFFFF99), // Warna background bottom navigation bar
+            backgroundColor: Color(0xFFFFFF99),
           ),
         ),
-        home: const LoginPage(),
+        home: SplashScreen(),
         routes: {
           '/login': (context) => const LoginPage(),
           '/register': (context) => const RegisterPage(),

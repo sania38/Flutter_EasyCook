@@ -1,8 +1,7 @@
 import 'dart:io';
-
-import 'package:easycook/bloc/profile_pict.dart';
-import 'package:easycook/bloc/upload_profile.dart';
 import 'package:easycook/screens/tambah_screen.dart';
+import 'package:easycook/state%20management/provider/profile_pict.dart';
+import 'package:easycook/state%20management/provider/upload_profile.dart';
 import 'package:easycook/utils/login_data_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -56,7 +55,7 @@ class _ProfileScreenState extends State<ProfileScreen>
         setState(() {
           _image = File(pickedFile.path);
         });
-        // Upload the selected profile picture to Firebase
+
         await Provider.of<ProfileProvider>(context, listen: false)
             .uploadProfilePicture(_image!, _user!.uid);
         ;
@@ -67,9 +66,8 @@ class _ProfileScreenState extends State<ProfileScreen>
   }
 
   void _logout(BuildContext context) async {
-    // Hapus data login dari SharedPreferences
     await LoginDataManager.clearLoginData();
-    // Navigasi kembali ke halaman login dan hapus semua rute sebelumnya
+
     Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
   }
 
@@ -118,8 +116,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                         ? NetworkImage(
                             Provider.of<ProfilePictureUrlProvider>(context)
                                 .profilePictureUrl!) as ImageProvider<Object>
-                        : const AssetImage(
-                            'assets/exProf.jpg'), // Use a placeholder if _profilePictureUrl is null
+                        : const AssetImage('assets/exProf.jpg'),
                     radius: 100,
                   ),
                 ),
@@ -200,7 +197,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image.asset(
-                              'assets/kosong.png', // Path to your placeholder image
+                              'assets/kosong.png',
                               width: 250,
                               height: 250,
                             ),
@@ -310,8 +307,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                                                       MaterialPageRoute(
                                                         builder: (context) =>
                                                             TambahScreen(
-                                                          recipeId: resep
-                                                              .id, // Kirim ID resep untuk diedit
+                                                          recipeId: resep.id,
                                                         ),
                                                       ),
                                                     );
@@ -381,7 +377,7 @@ class _ProfileScreenState extends State<ProfileScreen>
                     ),
                   );
                   Navigator.pop(context);
-                  // Lakukan refreh data atau navigasi kembali ke halaman sebelumnya
+
                   setState(() {
                     _resepFuture = FirebaseService().ambilResepUser();
                   });

@@ -1,11 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:easycook/models/resep_model.dart';
-import 'package:easycook/services/user_auth.dart'; // Import UserRepository
+import 'package:easycook/services/user_auth.dart';
 
 class RecipeCard extends StatelessWidget {
   final Recipe recipe;
-  final String profilePictureUrl; // Tambahkan properti profilePictureUrl
+  final String profilePictureUrl;
 
   final UserRepository _userRepository =
       UserRepository(FirebaseFirestore.instance);
@@ -13,7 +13,7 @@ class RecipeCard extends StatelessWidget {
   RecipeCard({
     Key? key,
     required this.recipe,
-    required this.profilePictureUrl, // Inisialisasi properti profilePictureUrl
+    required this.profilePictureUrl,
   }) : super(key: key);
 
   Future<String?> fetchProfilePictureUrl(String userId) async {
@@ -70,15 +70,12 @@ class RecipeCard extends StatelessWidget {
                       children: [
                         CircleAvatar(
                           backgroundImage: profilePictureUrl != null
-                              ? NetworkImage(profilePictureUrl!)
+                              ? NetworkImage(profilePictureUrl)
                                   as ImageProvider<Object>
-                              : const AssetImage(
-                                  'assets/exProf.jpg'), // Use a placeholder if _profilePictureUrl is null
+                              : const AssetImage('assets/exProf.jpg'),
                           radius: 20,
                         ),
-
                         const SizedBox(width: 10),
-                        // Gunakan FutureBuilder untuk menampilkan nama pengguna
                         FutureBuilder<String?>(
                           future: _userRepository.getUserName(recipe.userId),
                           builder: (context, snapshot) {
@@ -88,7 +85,6 @@ class RecipeCard extends StatelessWidget {
                             } else if (snapshot.hasError) {
                               return Text('Error: ${snapshot.error}');
                             } else {
-                              // Tampilkan nama pengguna jika data tersedia
                               return Text(snapshot.data ?? 'Unknown');
                             }
                           },

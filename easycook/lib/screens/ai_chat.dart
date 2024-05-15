@@ -28,7 +28,7 @@ class _AiChatState extends State<AiChat> {
         isRequesting = true;
       });
 
-      _controller.clear(); // Membersihkan teks dari TextField
+      _controller.clear();
 
       // Menambahkan pesan rekomendasi di bawah pesan pengguna
       _getRecommendations();

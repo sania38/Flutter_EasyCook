@@ -85,14 +85,6 @@ class _LoginPageState extends State<LoginPage> {
             padding: const EdgeInsets.all(20.0),
             child: Column(
               children: [
-                // TextFormField(
-                //   controller: _nameController,
-                //   decoration: const InputDecoration(
-                //       labelText: 'Masukan nama', border: OutlineInputBorder()),
-                // ),
-                // const SizedBox(
-                //   height: 24,
-                // ),
                 Image.asset(
                   "assets/loreg.png",
                   width: 170.0,
@@ -110,6 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 24,
                 ),
                 TextFormField(
+                  key: Key("emailTextField"),
                   controller: _emailController,
                   decoration: const InputDecoration(
                     labelText: 'Masukan email',
@@ -130,6 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 24,
                 ),
                 TextFormField(
+                  key: Key("passwordTextField"),
                   controller: _passwordController,
                   decoration: InputDecoration(
                       suffixIcon: IconButton(
@@ -151,6 +145,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 24,
                 ),
                 ElevatedButton(
+                  key: Key("masukButton"),
                   onPressed: () {
                     context.read<LoginCubit>().login(
                           email: _emailController.text,
@@ -168,46 +163,11 @@ class _LoginPageState extends State<LoginPage> {
                     style: TextStyle(color: Colors.black),
                   ),
                 ),
-
                 const SizedBox(
                   height: 24,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        // signInWithGoogle();
-                      },
-                      child: const CircleAvatar(
-                        radius: 20,
-                        backgroundColor: Color.fromARGB(255, 236, 236, 236),
-                        backgroundImage: NetworkImage(
-                            'https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png'),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 20,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        // Navigator.push(
-                        //     context,
-                        //     MaterialPageRoute(
-                        //         builder: (context) => PhoneAuthScreen()));
-                      },
-                      child: const CircleAvatar(
-                        radius: 20,
-                        backgroundImage: NetworkImage(
-                            'https://i.pinimg.com/564x/87/b1/2a/87b12a1e8a11f6c1264a237c5f08c195.jpg'),
-                      ),
-                    ),
-                  ],
-                ),
-
-                Row(
-                  mainAxisAlignment:
-                      MainAxisAlignment.center, //Menengahkan elemen horizontal
                   children: [
                     const Text("Belum punya akun ?"),
                     TextButton(

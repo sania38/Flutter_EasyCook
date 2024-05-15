@@ -150,7 +150,7 @@ class _ResepState extends State<Resep> {
                                           } else {
                                             int totalResep = snapshot.data!;
                                             return Text(
-                                              "Total Resep $totalResep", // Displaying the total number of recipes uploaded by the user
+                                              "Total Resep $totalResep",
                                               style: const TextStyle(
                                                 fontSize: 14,
                                                 fontWeight: FontWeight.w500,
@@ -184,17 +184,13 @@ class _ResepState extends State<Resep> {
                                 Container(
                                   decoration: BoxDecoration(
                                     color: Colors.white,
-                                    borderRadius: BorderRadius.circular(
-                                        8), // Atur radius sesuai keinginan Anda
+                                    borderRadius: BorderRadius.circular(8),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: Colors.grey
-                                            .withOpacity(0.5), // Warna bayangan
-                                        spreadRadius:
-                                            2, // Radius penyebaran bayangan
-                                        blurRadius: 5, // Radius blur bayangan
-                                        offset: const Offset(0,
-                                            3), // Offset dari bayangan dalam (x, y)
+                                        color: Colors.grey.withOpacity(0.5),
+                                        spreadRadius: 2,
+                                        blurRadius: 5,
+                                        offset: const Offset(0, 3),
                                       ),
                                     ],
                                   ),
@@ -232,17 +228,13 @@ class _ResepState extends State<Resep> {
                                 Container(
                                   decoration: BoxDecoration(
                                     color: Colors.white,
-                                    borderRadius: BorderRadius.circular(
-                                        8), // Atur radius sesuai keinginan Anda
+                                    borderRadius: BorderRadius.circular(8),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: Colors.grey
-                                            .withOpacity(0.5), // Warna bayangan
-                                        spreadRadius:
-                                            2, // Radius penyebaran bayangan
-                                        blurRadius: 5, // Radius blur bayangan
-                                        offset: const Offset(0,
-                                            3), // Offset dari bayangan dalam (x, y)
+                                        color: Colors.grey.withOpacity(0.5),
+                                        spreadRadius: 2,
+                                        blurRadius: 5,
+                                        offset: const Offset(0, 3),
                                       ),
                                     ],
                                   ),
@@ -264,9 +256,7 @@ class _ResepState extends State<Resep> {
                                               '\u2022',
                                               style: TextStyle(fontSize: 24),
                                             ),
-                                            const SizedBox(
-                                                width:
-                                                    8.0), // Spacer between bullet and text
+                                            const SizedBox(width: 8.0),
                                             Expanded(
                                               child: ListBody(
                                                 children: [
@@ -289,8 +279,7 @@ class _ResepState extends State<Resep> {
                                           ],
                                         );
                                       } else {
-                                        // Return fallback widget or handle the null value appropriately
-                                        return Container(); // For example, returning an empty container
+                                        return Container();
                                       }
                                     },
                                   ),

@@ -9,7 +9,6 @@ class ProfileProvider with ChangeNotifier {
 
   Future<void> uploadProfilePicture(File image, String userId) async {
     try {
-      // Mendapatkan referensi untuk menyimpan foto di Firebase Storage
       Reference ref = FirebaseStorage.instance
           .ref()
           .child('profile_pictures')
@@ -34,7 +33,7 @@ class ProfileProvider with ChangeNotifier {
       _profilePictureUrl = downloadURL;
       notifyListeners();
     } catch (e) {
-      print('Error uploading profile picture: $e');
+      print('Error saat mengunggah gambar : $e');
       // Tangani kesalahan jika terjadi
     }
   }
