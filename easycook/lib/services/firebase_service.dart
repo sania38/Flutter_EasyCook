@@ -75,7 +75,7 @@ class FirebaseService {
           cookingSteps: List<String>.from(doc['cara_memasak']),
           imageURL: doc['foto_url'],
           userId: doc['user_id'],
-          createdAt: doc['created_at'].toDate(),
+          createdAt: (doc['created_at'] as Timestamp).toDate(),
           profileName: '',
         );
       }).toList();

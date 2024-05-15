@@ -66,9 +66,45 @@ class _ProfileScreenState extends State<ProfileScreen>
   }
 
   void _logout(BuildContext context) async {
-    await LoginDataManager.clearLoginData();
-
-    Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Konfirmasi Logout'),
+          content: Text('Apakah Anda yakin ingin keluar?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                'Batal',
+                style: TextStyle(
+                  color: Color(0xFF58A975),
+                ),
+              ),
+            ),
+            TextButton(
+              onPressed: () async {
+                Navigator.of(context).pop(); // Tutup dialog
+                await LoginDataManager.clearLoginData(); // Lakukan logout
+                Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    '/login',
+                    (route) =>
+                        false); // Navigasi ke halaman login dan hapus history navigasi
+              },
+              child: Text(
+                'Keluar',
+                style: TextStyle(
+                  color: Color(0xFF58A975),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override

@@ -51,8 +51,7 @@ class UpdateRecipeProvider extends ChangeNotifier {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) =>
-              MainScreen(), // Ganti ResepPage dengan halaman yang ingin Anda navigasikan
+          builder: (context) => MainScreen(),
         ),
       );
     } catch (e) {
